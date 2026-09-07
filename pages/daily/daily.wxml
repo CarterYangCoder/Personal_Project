@@ -1,0 +1,32 @@
+<navigation-bar title="暑假一起过" background="#f5f8f6" color="#263534"></navigation-bar>
+<scroll-view class="daily-page" scroll-y>
+  <view wx:if="{{!isLoggedIn}}" class="guest-module page-shell"><view class="eyebrow">DAILY MOMENTS</view><view class="page-title">生活记录</view><view class="page-subtitle">登录后记录每日心情、收藏歌曲，并查看只属于自己的暑假日记。</view><view class="guest-icon">🎵</view><button bindtap="goLogin">登录后开始记录</button></view>
+  <block wx:else>
+  <view class="page-shell">
+    <view class="daily-top"><view><view class="eyebrow">LITTLE MOMENTS</view><view class="page-title">生活记录</view></view></view>
+    <view class="daily-lead">一首歌、一句话、一件重要的小事，<br/>都值得被今天认真收藏。</view>
+    <view class="section-head"><view class="section-title">每日一歌</view><view class="section-link">{{todayLabel}}</view></view>
+    <view class="song-card surface">
+      <view class="record"><view class="record-center">♪</view></view>
+      <view class="song-copy"><view class="song-label">TODAY'S SONG</view><view class="song-title">{{currentSong.title}}</view><view class="song-artist">{{currentSong.artist}}</view><view class="song-note">{{currentSong.note}}</view><view class="song-actions"><button class="change-song" bindtap="nextSong">换一首 ↻</button><button wx:if="{{isLoggedIn}}" class="favorite-song {{isCurrentFavorite ? 'saved' : ''}}" bindtap="toggleFavorite">{{isCurrentFavorite ? '已收藏 ♥' : '收藏 ♡'}}</button></view></view>
+    </view>
+    <view class="section-head"><view class="section-title">写下今天</view><view class="section-link">重要的事</view></view>
+    <form wx:if="{{isLoggedIn}}" class="diary-form surface" bindsubmit="saveDiary">
+      <view class="form-row"><picker mode="date" value="{{diaryDate}}" bindchange="changeDiaryDate"><view class="date-field">{{diaryDate}}⌄</view></picker><picker range="{{moods}}" value="{{moodIndex}}" bindchange="changeMood"><view class="date-field">{{moods[moodIndex]}}⌄</view></picker></view>
+      <input class="diary-title-input" name="title" value="{{diaryTitle}}" bindinput="inputDiaryTitle" placeholder="给今天起个标题" maxlength="30" />
+      <textarea class="diary-content-input" name="content" value="{{diaryContent}}" bindinput="inputDiaryContent" placeholder="记录今天发生的、你觉得重要的事情……" maxlength="500"></textarea>
+      <view class="important-row"><view><view>标记为重要</view><text>重要日记会显示一颗星</text></view><switch color="#44a08d" checked="{{diaryImportant}}" bindchange="changeImportant" /></view>
+      <button class="save-button" form-type="submit">保存这一天</button>
+    </form>
+    <view wx:else class="diary-form surface diary-locked" bindtap="goLogin"><view>🔒 登录后写下自己的暑假</view><text>日记、心情和重要时刻只会保存在你的账号下。去登录 →</text></view>
+    <view wx:if="{{diaries.length}}"><view class="section-head"><view class="section-title">我的日记</view><view class="section-link">{{diaries.length}} 篇</view></view>
+      <view class="diary-item surface" wx:for="{{diaries}}" wx:key="id">
+        <view class="diary-date"><text>{{item.date}}</text><text>{{item.mood}}</text></view><view class="diary-title">{{item.important ? '★ ' : ''}}{{item.title}}</view><view class="diary-content">{{item.content}}</view><view class="delete-diary" bindtap="deleteDiary" data-id="{{item.id}}" aria-role="button" aria-label="删除日记{{item.title}}">删除记录</view>
+      </view>
+    </view>
+    <view class="section-head"><view class="section-title">快乐存档</view><view class="section-link">慢慢收集</view></view>
+    <view class="masonry"><view class="moment tall"><view class="moment-icon">🎙</view><view class="moment-title">耳机里的小宇宙</view><view class="moment-text">走路、洗碗、失眠的时候，都有声音陪我绕过一点情绪。</view></view><view class="moment orange-card"><view class="moment-icon">🎮</view><view class="moment-title">今晚开黑吗？</view><view class="moment-text">输赢不重要，重要的是一起笑。</view></view><view class="moment blue-card"><view class="moment-icon">☕</view><view class="moment-title">朋友见面</view><view class="moment-text">把很久不见压缩成一句：你最近怎么样？</view></view><view class="moment green-card"><view class="moment-icon">〰</view><view class="moment-title">海风和晚霞</view></view></view>
+    <view class="last-line">认真生活，<br/>也认真保存生活。</view>
+  </view>
+  </block>
+</scroll-view>

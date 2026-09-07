@@ -1,0 +1,19 @@
+.cover { position: relative; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; overflow: hidden; padding: 80rpx 58rpx; color: #fff; background: linear-gradient(155deg, #55cbbb 0%, #258eb3 56%, #1c718e 100%); transition: opacity .25s, transform .25s; }
+
+/* 宣纸与山水式封面 */
+.cover { padding: 96rpx 62rpx; color: #f9f3e5; background: linear-gradient(160deg, #142f2c 0%, #244a43 53%, #8f3a31 145%); }
+.cover::before, .cover::after { position: absolute; right: -12%; left: -12%; border-radius: 50% 50% 0 0; content: ''; }
+.cover::before { bottom: -145rpx; height: 500rpx; opacity: .55; background: linear-gradient(155deg, transparent 24%, #315d52 25%, #173a35 60%); transform: rotate(-5deg); }
+.cover::after { bottom: -265rpx; height: 520rpx; opacity: .72; background: linear-gradient(25deg, #172b29 20%, #31544c 62%, #132825 63%); transform: rotate(8deg); }
+.sun { top: 120rpx; right: 72rpx; width: 190rpx; height: 190rpx; opacity: .92; background: #b64638; box-shadow: 0 0 70rpx rgba(202,112,79,.28); }
+.orb-one { right: -130rpx; bottom: 190rpx; width: 420rpx; height: 420rpx; border-color: rgba(224,199,151,.16); }
+.orb-two { left: -260rpx; bottom: 40rpx; border-color: rgba(224,199,151,.1); }
+.cover-content { max-width: 590rpx; }
+.seal { position: absolute; top: -112rpx; left: 0; width: 66rpx; padding: 8rpx 0; border: 3rpx solid #d5a17a; color: #e1b38c; font-size: 22rpx; line-height: 1.18; text-align: center; }
+.cover-mark { color: #d4bea0; font-size: 18rpx; letter-spacing: 6rpx; }
+.cover-title { margin-top: 38rpx; font-size: 92rpx; line-height: 1.06; font-weight: 600; letter-spacing: 8rpx; text-shadow: 0 12rpx 35rpx rgba(0,0,0,.22); }
+.cover-divider { display: flex; align-items: center; gap: 18rpx; margin-top: 38rpx; color: #d8c5a7; font-size: 20rpx; letter-spacing: 3rpx; }
+.cover-divider text { width: 82rpx; height: 2rpx; background: #b9956e; }
+.cover-subtitle { margin-top: 22rpx; color: rgba(249,243,229,.78); }
+.cover-bottom { z-index: 3; color: rgba(244,227,198,.72); }
+.leave { opacity: 0; transform: scale(1.03); }.sun { position: absolute; top: -120rpx; right: -70rpx; width: 430rpx; height: 430rpx; border-radius: 50%; background: #ffcb73; opacity: .92; }.orb { position: absolute; border: 2rpx solid rgba(255,255,255,.18); border-radius: 50%; }.orb-one { right: -170rpx; bottom: 170rpx; width: 440rpx; height: 440rpx; }.orb-two { left: -230rpx; bottom: -180rpx; width: 520rpx; height: 520rpx; }.cover-content { position: relative; z-index: 2; animation: rise .9s ease both; }.cover-mark { font-size: 21rpx; letter-spacing: 5rpx; opacity: .82; }.cover-title { margin-top: 34rpx; font-size: 84rpx; line-height: 1.12; font-weight: 700; letter-spacing: 3rpx; text-shadow: 0 10rpx 30rpx rgba(13,88,100,.18); }.cover-subtitle { margin-top: 35rpx; font-size: 26rpx; letter-spacing: 2rpx; opacity: .9; }.cover-bottom { position: absolute; z-index: 2; right: 58rpx; bottom: 70rpx; display: flex; flex-direction: column; align-items: flex-end; gap: 12rpx; color: rgba(255,255,255,.74); font-size: 21rpx; letter-spacing: 2rpx; }.cover-arrow { font-size: 34rpx; animation: bob 1.6s ease-in-out infinite; }.particle { position: absolute; width: 14rpx; height: 14rpx; border-radius: 50%; background: rgba(255,255,255,.55); animation: float 4s ease-in-out infinite; }.p1 { top: 27%; right: 25%; }.p2 { top: 70%; left: 17%; animation-delay: 1s; }.p3 { top: 15%; left: 15%; width: 9rpx; height: 9rpx; animation-delay: 2s; }@keyframes rise { from { opacity: 0; transform: translateY(35rpx); } to { opacity: 1; transform: translateY(0); } }@keyframes bob { 50% { transform: translateY(10rpx); } }@keyframes float { 50% { transform: translateY(-28rpx) translateX(10rpx); opacity: .25; } }

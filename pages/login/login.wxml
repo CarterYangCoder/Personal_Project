@@ -1,0 +1,21 @@
+<view class="login-page">
+  <view class="glow glow-one"></view><view class="glow glow-two"></view>
+  <view class="login-content">
+    <view class="back" bindtap="back">← 返回首页</view>
+    <view class="login-seal">夏日<br/>记</view><view class="brand">SUMMER LOG / 2026</view>
+    <view class="login-title">欢迎回来，<br/>一起把生活记录下来。</view>
+    <view class="login-desc">登录后可使用事务看板、公益报名、学习计划和生活记录。个人头像与昵称可在登录后随时修改。</view>
+    <view class="login-card">
+      <button class="login-avatar" style="width: 128rpx; height: 128rpx; min-height: 0; margin: 0 auto; padding: 0;" open-type="chooseAvatar" bindchooseavatar="chooseAvatar">
+        <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" mode="aspectFill"/>
+        <view wx:else>+</view>
+      </button>
+      <view class="login-avatar-tip">点上方圆圈选择微信头像</view>
+      <view class="login-card-title">暑假一起过</view>
+      <view class="login-card-desc">登录后，开始整理你的每一天</view>
+      <input class="login-nickname" type="nickname" value="{{nickname}}" bindinput="inputNickname" maxlength="16" placeholder="点击获取微信昵称，或自行输入"/>
+      <button class="login-button" bindtap="login">微信登录</button>
+      <view class="login-tip">授权头像昵称后，一键完成微信登录</view>
+    </view>
+  </view>
+</view>

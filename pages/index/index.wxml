@@ -1,0 +1,6 @@
+<view class="cover {{leaving ? 'leave' : ''}}" bindtap="enter">
+  <view class="sun"></view><view class="orb orb-one"></view><view class="orb orb-two"></view>
+  <view class="particle p1"></view><view class="particle p2"></view><view class="particle p3"></view>
+  <view class="cover-content"><view class="seal">夏<br/>日</view><view class="cover-mark">乙巳 · SUMMER 2026</view><view class="cover-title">我的<br/>暑假生活</view><view class="cover-divider"><text></text><view>山海有期 · 日常有记</view></view><view class="cover-subtitle">一个月，一些事，一些成长</view></view>
+  <view class="cover-bottom"><text>轻触进入</text><text class="cover-arrow">↓</text></view>
+</view>

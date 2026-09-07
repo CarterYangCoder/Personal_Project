@@ -1,0 +1,1 @@
+<view class="summer-card tap-scale {{item.tone}}" bindtap="go" aria-role="button" aria-label="打开{{item.title}}"><view class="card-icon">{{item.icon}}</view><view class="card-title">{{item.title}}</view><view class="card-note">{{item.note}}</view><view class="card-arrow">↗</view></view>

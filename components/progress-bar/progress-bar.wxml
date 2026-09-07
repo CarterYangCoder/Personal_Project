@@ -1,0 +1,1 @@
+<view class="progress-wrap"><view class="progress-meta"><text>{{label}}</text><text>{{displayValue}}%</text></view><view class="track"><view class="fill" style="width: {{displayValue}}%"></view></view></view>

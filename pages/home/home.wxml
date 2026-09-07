@@ -1,0 +1,36 @@
+<navigation-bar title="暑假一起过" background="#f5f8f6" color="#263534" back="{{false}}"></navigation-bar>
+<scroll-view class="home" scroll-y>
+  <view class="page-shell">
+    <block wx:if="{{activeTab === 'home'}}">
+    <view class="top-note">SUMMER SERVICE CENTER <text>2026</text></view>
+    <view class="app-hero"><image class="app-hero-image" src="/images/app-service-hero.jpg" mode="aspectFill"/><view class="app-hero-shade"></view><view class="app-hero-copy"><view class="app-hero-tag">YOUR SUMMER, IN ONE PLACE</view><view class="app-hero-title">把每一份认真<br/>放进同一个日常。</view><view class="app-hero-footer"><text>事务 · 公益 · 专注 · 生活</text><text>↗</text></view></view></view>
+    <view wx:if="{{!isLoggedIn}}" class="login-banner" bindtap="goLogin"><view><view class="login-banner-title">登录，开始记录你的夏天</view><view class="login-banner-note">计划、日记与公益报名会保存在你的账号下</view></view><view class="login-banner-arrow">→</view></view>
+    <view wx:if="{{isLoggedIn}}" class="service-dashboard">
+      <view class="dashboard-title"><text>我的服务概览</text><text>下拉同步</text></view>
+      <view class="dashboard-grid"><view><text>{{dashboard.work}}</text><view>待办事务</view></view><view><text>{{dashboard.study}}</text><view>学习计划</view></view><view><text>{{dashboard.volunteer}}</text><view>公益报名</view></view><view><text>{{dashboard.diary}}</text><view>生活记录</view></view></view>
+    </view>
+    <view class="assistant-entry tap-scale" bindtap="openAssistant" aria-role="button" aria-label="打开夏日 AI 助手">
+      <view class="assistant-orb"><text>✦</text></view>
+      <view class="assistant-entry-copy"><view class="assistant-entry-label">SUMMER AI</view><view class="assistant-entry-title">今天想先完成什么？</view><view class="assistant-entry-note">整理计划、选择公益，或找一个日记灵感</view></view>
+      <view class="assistant-entry-arrow">→</view>
+    </view>
+    <view class="section-head"><view class="section-title">应用服务</view><view class="section-link">四项服务</view></view>
+    <view class="quick-grid"><summer-card wx:for="{{quickLinks}}" wx:key="title" item="{{item}}"></summer-card></view>
+    <block wx:if="{{isLoggedIn}}"><view class="section-head activity-head"><view class="section-title">暑假动态</view><view class="section-link">登录后可见</view></view><timeline items="{{timeline}}"></timeline><view class="home-footer">把今天过好，也把每一次行动好好保存。</view></block>
+    </block>
+    <block wx:else>
+      <view class="personal-top"><view class="top-note">MY SUMMER SPACE <text>个人</text></view><view class="page-title">我的暑假<br/>由我来填写。</view></view>
+      <view wx:if="{{!isLoggedIn}}" class="personal-locked surface">
+        <view class="locked-icon">☀</view><view class="locked-title">登录后开启我的暑假</view><view class="locked-note">在这里管理头像昵称，并查看自己填写的工作、学习、公益和生活记录。</view><button bindtap="goLogin">去登录</button>
+      </view>
+      <view wx:else>
+        <view class="personal-card surface" bindtap="openProfile"><view class="avatar"><image wx:if="{{profile.avatarUrl}}" class="profile-avatar-image" src="{{profile.avatarUrl}}" mode="aspectFill"/><text wx:else>{{avatarText}}</text></view><view class="profile-copy"><view class="profile-name">{{profile.name}}</view><view class="profile-school">{{profile.school}}</view></view><view class="profile-action">编辑</view></view>
+        <view class="section-head"><view class="section-title">我的填写内容</view><view class="section-link">仅自己可见</view></view>
+        <view class="personal-stats surface"><view bindtap="goModule" data-page="/pages/work/work"><text>{{dashboard.work}}</text><view>工作待办 ›</view></view><view bindtap="goModule" data-page="/pages/study/study"><text>{{dashboard.study}}</text><view>学习计划 ›</view></view><view bindtap="goModule" data-page="/pages/volunteer/volunteer"><text>{{dashboard.volunteer}}</text><view>公益意向 ›</view></view><view bindtap="goModule" data-page="/pages/daily/daily"><text>{{dashboard.diary}}</text><view>生活日记 ›</view></view></view>
+        <view class="private-note">你填写的计划、日记和参与意向会按当前账号保存。退出登录后，这些内容不会展示在首页。</view>
+        <button class="logout-button" bindtap="logout">退出登录</button>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+<view class="bottom-tabs"><view class="bottom-tab {{activeTab === 'home' ? 'active' : ''}}" bindtap="switchTab" data-tab="home"><text>⌂</text><view>首页</view></view><view class="bottom-tab {{activeTab === 'personal' ? 'active' : ''}}" bindtap="switchTab" data-tab="personal"><text>◉</text><view>个人</view></view></view>

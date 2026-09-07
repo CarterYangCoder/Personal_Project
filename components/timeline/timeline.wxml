@@ -1,0 +1,7 @@
+<view class="timeline">
+  <view class="timeline-item tap-scale" wx:for="{{items}}" wx:key="title" bindtap="openItem" data-page="{{item.page}}" aria-role="button" aria-label="{{item.date}} {{item.title}}">
+    <view class="timeline-date">{{item.date}}</view>
+    <view class="timeline-rail"><view class="dot">{{item.icon}}</view><view class="line" wx:if="{{index !== items.length - 1}}"></view></view>
+    <view class="timeline-content"><view class="timeline-title">{{item.title}}</view><view class="timeline-desc">{{item.desc}}</view></view>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<navigation-bar title="暑假一起过" background="#f5f8f6" color="#263534"></navigation-bar>
+<scroll-view class="work-page" scroll-y>
+  <view wx:if="{{!isLoggedIn}}" class="guest-module page-shell"><view class="eyebrow">WORKSPACE</view><view class="page-title">工作任务</view><view class="page-subtitle">登录后创建自己的工作待办、记录项目进展，并把暑假的每一项事务保存下来。</view><view class="guest-icon">📖</view><button bindtap="goLogin">登录后使用工作看板</button></view>
+  <block wx:else>
+  <view class="work-hero"><view class="hero-ring"></view><view class="hero-kicker">WORK TASKS / 2026</view><view class="hero-title">我的工作<br/>任务</view><view class="hero-note">把每一项要做的事，整理成清晰的安排。</view><view class="paper-plane">✈</view></view>
+  <view class="page-shell work-body">
+    <view class="eyebrow">THE FRESHMAN HANDBOOK</view><view class="page-title">《新生手册》制作全记录</view><view class="page-subtitle">面向 2026 级新同学的校园生存指南：从报到清单、部门地图，到那些不写在通知里的小事。</view>
+    <view class="handbook surface"><view class="book-spine">OCEAN<br/>UNIVERSITY</view><view class="book-cover"><view class="cover-tiny">HELLO, FRESHMAN</view><view class="book-name">新生<br/>手册</view><view class="book-year">2026</view></view><view class="book-sticker">给新同学的<br/>第一封信</view></view>
+    <view class="section-head"><view class="section-title">工作看板</view><view class="section-link">{{isLoggedIn ? openTasks + ' 项待处理' : '登录后填写'}}</view></view>
+    <view wx:if="{{isLoggedIn}}" class="work-board surface"><form class="work-input-row" bindsubmit="addTask"><input name="title" placeholder="添加一项待办，例如：确认印刷数量" maxlength="40"/><button form-type="submit">添加</button></form><view wx:if="{{!tasks.length}}" class="board-empty">把临时事务放在这里，完成后点一下即可归档。</view><view class="board-task {{item.done ? 'is-done' : ''}}" wx:for="{{tasks}}" wx:key="id"><view class="task-check" bindtap="toggleTask" data-id="{{item.id}}" aria-role="button" aria-label="{{item.done ? '标记为未完成' : '标记为已完成'}}">{{item.done ? '✓' : ''}}</view><view class="board-task-title" bindtap="toggleTask" data-id="{{item.id}}">{{item.title}}</view><view class="board-delete" bindtap="deleteTask" data-id="{{item.id}}" aria-role="button" aria-label="删除{{item.title}}">×</view></view></view>
+    <view wx:else class="work-board surface board-locked" bindtap="goLogin"><view>🔒 登录后创建我的工作待办</view><text>你的填写内容仅当前账号可见 · 去登录 →</text></view>
+    <view class="section-head"><view class="section-title">制作流程</view><view class="section-link">全部完成 ✓</view></view>
+    <view class="stage-list"><view class="stage" wx:for="{{stages}}" wx:key="name"><view class="stage-num">0{{index + 1}}</view><view class="stage-copy"><view class="stage-top"><text>{{item.name}}</text><text class="done">已完成</text></view><view class="stage-note">{{item.note}}</view></view></view></view>
+    <progress-bar label="手册完成度" value="100"></progress-bar>
+    <view class="section-head"><view class="section-title">一起完成的人</view><view class="section-link">感谢各位部长</view></view>
+    <view class="team surface"><view class="team-avatars"><view wx:for="{{team}}" wx:key="*this" class="team-avatar">{{item}}</view></view><view class="team-word">每一页的背后，都是一群人在假期里互相补位、认真较劲的身影。</view></view>
+    <view class="reflection">“领导不是站在前面，而是在大家需要的时候，把事情稳稳接住。”</view>
+    <view class="qr-section">
+      <view class="qr-label">扫码加入学生会纳新群</view>
+      <image class="qr-img" src="/images/naxin1.png" mode="widthFix" show-menu-by-longpress></image>
+    </view>
+  </view>
+  </block>
+</scroll-view>

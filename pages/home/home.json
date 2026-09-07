@@ -1,0 +1,1 @@
+{ "enablePullDownRefresh": true, "backgroundColor": "#FAFAF7", "usingComponents": { "navigation-bar": "/components/navigation-bar/navigation-bar", "timeline": "/components/timeline/timeline", "summer-card": "/components/summer-card/summer-card", "progress-bar": "/components/progress-bar/progress-bar" } }

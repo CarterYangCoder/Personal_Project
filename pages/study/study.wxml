@@ -1,0 +1,39 @@
+<navigation-bar title="暑假一起过" background="#f5f8f6" color="#263534"></navigation-bar>
+<scroll-view class="study-page" scroll-y>
+  <view class="page-shell">
+    <view class="study-top"><view class="study-mark">PLAN / FOCUS</view></view>
+    <view class="study-hero"><view class="study-emoji">{{wink ? '😶‍🌫️' : '🫠'}}</view><view><view class="page-title">骗你的，暑假不会学习的</view><view class="hero-note">但计划还是可以写，番茄钟也可以先开起来。</view></view></view>
+    <view wx:if="{{!isLoggedIn}}" class="study-login-lock surface" bindtap="goLogin"><view>🔒 登录后定制学习计划</view><text>填写四象限任务、设置番茄钟，并在个人页查看你的学习进度。去登录 →</text></view>
+    <block wx:else>
+    <view class="section-head"><view class="section-title">时间四象限</view><view class="section-link">重要 × 紧急</view></view>
+    <view class="quadrant-grid">
+      <view class="quadrant {{item.tone}}" wx:for="{{quadrants}}" wx:key="key">
+        <view class="quadrant-head"><view><text>{{item.index}}</text>{{item.name}}</view><view>{{item.items.length}}</view></view>
+        <view class="task-empty" wx:if="{{!item.items.length}}">暂时没有计划</view>
+        <view class="task-item {{task.done ? 'task-finished' : ''}}" wx:for="{{item.items}}" wx:for-item="task" wx:key="id"><view class="task-check" catchtap="toggleTask" data-id="{{task.id}}">{{task.done ? '✓' : ''}}</view><view class="task-title" catchtap="toggleTask" data-id="{{task.id}}">{{task.title}}</view><view class="task-meta">{{task.done ? '已完成' : task.visibility}}</view><view class="task-delete" catchtap="deleteTask" data-id="{{task.id}}">×</view></view>
+      </view>
+    </view>
+    <form class="plan-form surface" bindsubmit="addTask">
+      <view class="form-title">写下一项计划</view>
+      <input class="field" name="title" placeholder="例如：完成移动开发作业" maxlength="40" />
+      <view class="picker-row">
+        <picker class="picker" range="{{quadrantNames}}" value="{{quadrantIndex}}" bindchange="changeQuadrant"><view class="field picker-field">{{quadrantNames[quadrantIndex]}}⌄</view></picker>
+        <picker class="picker" range="{{visibilityOptions}}" value="{{visibilityIndex}}" bindchange="changeVisibility"><view class="field picker-field">{{visibilityOptions[visibilityIndex]}}⌄</view></picker>
+      </view>
+      <button class="add-button" form-type="submit">加入四象限</button>
+      <view class="plan-tools"><view class="privacy-tip">轻触计划即可标记完成；“可分享”只会出现在你复制的摘要中。</view><view class="share-plan" bindtap="sharePlan">复制计划摘要</view></view>
+    </form>
+    <view class="section-head"><view class="section-title">自定义番茄钟</view><view class="section-link">专注第 {{rounds + 1}} 轮</view></view>
+    <view class="timer-card surface {{timerMode}}">
+      <view class="timer-mode">{{timerMode === 'focus' ? '深度学习' : '休息一下'}}</view>
+      <view class="timer-text">{{timerText}}</view>
+      <view class="timer-settings">
+        <view><text>专注分钟</text><input type="number" value="{{focusMinutes}}" disabled="{{timerRunning}}" bindblur="changeFocusMinutes" /></view>
+        <view><text>休息分钟</text><input type="number" value="{{restMinutes}}" disabled="{{timerRunning}}" bindblur="changeRestMinutes" /></view>
+      </view>
+      <view class="timer-actions"><button class="secondary-button" bindtap="resetTimer">重置</button><button class="primary-button" bindtap="toggleTimer">{{timerRunning ? '暂停' : '开始专注'}}</button></view>
+    </view>
+    <view class="study-ending" bindtap="toggleWink">轻触这里换一个表情。计划可以松一点，开始要认真一点。</view>
+    </block>
+  </view>
+</scroll-view>

@@ -1,0 +1,35 @@
+<navigation-bar title="暑假一起过" background="#f5f8f6" color="#263534"></navigation-bar>
+<scroll-view class="volunteer-page" scroll-y>
+  <view wx:if="{{!isLoggedIn}}" class="guest-module page-shell"><view class="eyebrow">VOLUNTEER</view><view class="page-title">志愿一起做</view><view class="page-subtitle">登录后查看自己的公益项目、填写参与意向，并保存你的行动记录。</view><view class="guest-icon">🤝</view><button bindtap="goLogin">登录后参与公益</button></view>
+  <block wx:else>
+  <view class="page-shell">
+    <view class="vol-top"><view class="vol-label">VOLUNTEER<br/><text>TOGETHER</text></view></view>
+    <view class="hero-copy"><view class="hero-icon">🤝</view><view class="page-title">志愿服务，一起做</view><view class="hero-desc">我会不定时更新可靠的公益需求。如果你也有想法，就从一本闲置童书、一份心愿清单开始，和我一起把善意送到真正需要的地方。</view></view>
+    <view class="promise surface">
+      <view class="promise-title">我们更关注这些行动</view>
+      <view class="promise-row"><text>01</text><view><view class="promise-name">线上筹资</view><view class="promise-note">围绕明确需求，小额、透明地筹集物资费用</view></view></view>
+      <view class="promise-row"><text>02</text><view><view class="promise-name">闲置众筹</view><view class="promise-note">让童书、文具、衣物被重新整理和送达</view></view></view>
+      <view class="promise-row"><text>03</text><view><view class="promise-name">敬老陪伴</view><view class="promise-note">依托已对接的敬老院，更新真实心愿和活动</view></view></view>
+    </view>
+    <view class="section-head"><view class="section-title">正在寻找同行者</view><view class="section-link">持续更新</view></view>
+    <view class="project tap-scale {{item.color}} {{activeId === item.id ? 'expanded' : ''}}" wx:for="{{projects}}" wx:key="id" bindtap="toggleProject" data-id="{{item.id}}">
+      <view class="project-head"><view><view class="project-type">{{item.type}}</view><view class="project-title">{{item.name}}</view></view><view class="status-tag">{{item.status}}</view></view>
+      <view class="project-target">帮助对象 · {{item.target}}</view><view class="project-desc">{{item.desc}}</view>
+      <view class="need-row" wx:if="{{activeId === item.id}}"><text wx:for="{{item.needs}}" wx:key="*this">{{item}}</text></view>
+      <view class="expand-text">{{activeId === item.id ? '收起详情 ↑' : '查看需要哪些伙伴 ↓'}}</view>
+    </view>
+    <view class="section-head"><view class="section-title">留下参与意向</view><view class="section-link">{{isLoggedIn ? '一起做公益' : '登录后填写'}}</view></view>
+    <form wx:if="{{isLoggedIn}}" class="join-form surface" bindsubmit="submitIntent">
+      <view class="field-label">怎么称呼你</view><input class="field" name="name" placeholder="请输入昵称或姓名" maxlength="20" />
+      <view class="field-label">想参与的项目</view><picker range="{{projectNames}}" value="{{projectIndex}}" bindchange="changeProject"><view class="field picker-field">{{projectNames[projectIndex]}} <text>⌄</text></view></picker>
+      <view class="field-label">你能提供什么帮助</view><textarea class="field textarea" name="message" placeholder="例如：有一批童书、可以协助打包、想去敬老院陪伴……" maxlength="200"></textarea>
+      <button class="join-button" form-type="submit">提交参与意向</button>
+      <view class="prototype-tip">参与意向会先保存在本机，并在网络可用时同步到当前微信账号。</view>
+    </form>
+    <view wx:else class="join-form surface login-lock" bindtap="goLogin"><view>🔒 登录后填写参与意向</view><text>保存后可在“个人”中查看自己的报名内容 · 去登录 →</text></view>
+    <view class="my-intents" wx:if="{{intents.length}}"><view class="section-head"><view class="section-title">我的参与意向</view><view class="section-link">{{intents.length}} 条</view></view><view class="intent surface" wx:for="{{intents}}" wx:key="id"><view><view class="intent-project">{{item.project}}</view><view class="intent-meta">{{item.name}} · {{item.createdAt}}</view><view class="intent-message">{{item.message}}</view><view class="intent-status">{{item.status}} · 等待发起人联系</view></view><view class="delete-link" catchtap="deleteIntent" data-id="{{item.id}}">撤回</view></view></view>
+    <button class="contact-button" bindtap="copyContactWord">联系暗号：公益一起做</button>
+    <view class="vol-ending">公益不一定从很大的事情开始。先找到同行的人，再把一件小事认真做完。</view>
+  </view>
+  </block>
+</scroll-view>
