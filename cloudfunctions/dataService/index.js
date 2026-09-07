@@ -8,7 +8,9 @@ const assistantRateLimits = new Map()
 
 const schemas = {
   workTasks: {
-    clientId: ['text', 64], title: ['text', 80], done: ['boolean']
+    clientId: ['text', 64], title: ['text', 80], date: ['text', 10], startTime: ['text', 5], endTime: ['text', 5],
+    category: ['text', 30], details: ['text', 500], result: ['text', 300],
+    status: ['enum', ['待开始', '进行中', '已完成']], done: ['boolean']
   },
   studyTasks: {
     clientId: ['text', 64], title: ['text', 80], quadrant: ['enum', ['important-urgent', 'important', 'urgent', 'later']],
@@ -113,6 +115,13 @@ function sanitizeRecord(collection, source) {
   if (!result.clientId) return null
   if (!result.title && collection !== 'volunteerIntents') return null
   if (collection === 'volunteerIntents' && (!result.name || !result.message || !result.project)) return null
+  if (collection === 'workTasks') {
+    result.date = /^\d{4}-\d{2}-\d{2}$/.test(result.date) ? result.date : ''
+    result.startTime = /^([01]\d|2[0-3]):[0-5]\d$/.test(result.startTime) ? result.startTime : ''
+    result.endTime = /^([01]\d|2[0-3]):[0-5]\d$/.test(result.endTime) ? result.endTime : ''
+    result.status = ['待开始', '进行中', '已完成'].includes(source.status) ? source.status : source.done ? '已完成' : '待开始'
+    result.done = result.status === '已完成'
+  }
   return result
 }
 
