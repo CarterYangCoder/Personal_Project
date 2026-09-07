@@ -3,10 +3,10 @@ const cloudData = require('../../utils/cloud-data')
 const recordStore = require('../../utils/record-store')
 
 const QUICK_PROMPTS = [
-  { label: '今天先做什么', text: '根据我的记录，今天先做什么？' },
-  { label: '帮我拆计划', text: '帮我把一个计划拆成容易开始的小步骤' },
-  { label: '推荐公益', text: '给我推荐一个适合参加的公益项目' },
-  { label: '日记灵感', text: '给我一个今天的日记灵感' }
+  { icon: '☀', tone: 'sun', label: '今天先做什么', note: '帮我排个轻松顺序', text: '根据我的记录，今天先做什么？' },
+  { icon: '✓', tone: 'mint', label: '帮我拆计划', note: '把困难变成第一步', text: '帮我把一个计划拆成容易开始的小步骤' },
+  { icon: '♡', tone: 'rose', label: '推荐一个公益', note: '找件温暖的小事', text: '给我推荐一个适合参加的公益项目' },
+  { icon: '✎', tone: 'blue', label: '给我日记灵感', note: '留住今天的小瞬间', text: '给我一个今天的日记灵感' }
 ]
 
 const MODEL_OPTIONS = [
@@ -21,16 +21,18 @@ function includesAny(text, words) {
 
 Page({
   data: {
-    displayName: '同学', isLoggedIn: false, draft: '', thinking: false, scrollTarget: 'chat-end', providerNote: 'DeepSeek 智能对话',
+    displayName: '同学', greeting: '你好', isLoggedIn: false, draft: '', thinking: false, scrollTarget: 'chat-end', providerNote: '在线陪伴中',
     summary: { work: 0, study: 0, volunteer: 0, diary: 0 }, quickPrompts: QUICK_PROMPTS, messages: [],
     modelOptions: MODEL_OPTIONS, modelLabels: MODEL_OPTIONS.map(item => item.label), modelIndex: 0,
     modelLabel: MODEL_OPTIONS[0].label, modelNote: MODEL_OPTIONS[0].note
   },
 
   onLoad() {
+    const hour = new Date().getHours()
+    const greeting = hour < 6 ? '夜深了' : hour < 11 ? '早上好' : hour < 14 ? '中午好' : hour < 18 ? '下午好' : '晚上好'
     const savedModelIndex = Number(wx.getStorageSync('summerAssistantModelIndex'))
     const selected = MODEL_OPTIONS[savedModelIndex] || MODEL_OPTIONS[0]
-    this.setData({ modelIndex: MODEL_OPTIONS.indexOf(selected), modelLabel: selected.label, modelNote: selected.note })
+    this.setData({ greeting, modelIndex: MODEL_OPTIONS.indexOf(selected), modelLabel: selected.label, modelNote: selected.note })
     this.refreshContext()
   },
 
@@ -107,10 +109,10 @@ Page({
         modelProfile: MODEL_OPTIONS[this.data.modelIndex].profile
       })
       reply = { content: result.content, action: this.findAction(text) }
-      this.setData({ providerNote: 'DeepSeek 在线 · 云函数安全调用' })
+      this.setData({ providerNote: '在线陪伴中' })
     } catch (error) {
       reply = this.createReply(text)
-      this.setData({ providerNote: '本地建议 · DeepSeek 暂不可用' })
+      this.setData({ providerNote: '本地灵感模式' })
     }
     const assistantMessage = { id: Date.now() + 1, role: 'assistant', ...reply }
     this.setData({ messages: [...this.data.messages, assistantMessage], thinking: false, scrollTarget: `message-${assistantMessage.id}` })

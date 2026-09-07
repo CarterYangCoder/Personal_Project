@@ -1,41 +1,44 @@
-<navigation-bar title="夏日 AI 助手" background="#eef7f4" color="#263534"></navigation-bar>
+<navigation-bar title="夏日 AI 助手" background="#f7f2e8" color="#263534"></navigation-bar>
 <view class="assistant-page">
+  <view class="ambient ambient-one"></view><view class="ambient ambient-two"></view>
   <scroll-view class="chat-scroll" scroll-y scroll-with-animation scroll-into-view="{{scrollTarget}}">
     <view class="chat-shell">
       <view class="assistant-head">
-        <view class="head-mark">✦</view>
-        <view><view class="head-kicker">SUMMER AI</view><view class="head-title">嗨，{{displayName}}</view><view class="head-note">我可以结合你在小程序里的记录，帮你理清今天。</view><view class="provider-note">{{providerNote}}</view></view>
+        <view class="head-mark"><view class="head-spark">✦</view><view class="head-dot"></view></view>
+        <view class="head-copy"><view class="head-kicker">小夏 · 你的夏日搭子</view><view class="head-title">{{greeting}}，{{displayName}}</view><view class="head-note">别急，我们从一件小事开始。</view><view class="provider-note"><text></text>{{providerNote}}</view></view>
       </view>
 
       <picker class="model-picker" mode="selector" range="{{modelLabels}}" value="{{modelIndex}}" bindchange="changeModel" disabled="{{thinking}}">
         <view class="model-picker-inner">
-          <view class="model-icon">AI</view>
-          <view class="model-copy"><view class="model-label">{{modelLabel}}</view><view class="model-note">{{modelNote}}</view></view>
-          <view class="model-chevron">⌄</view>
+          <view class="model-icon">AI</view><view class="model-copy"><view class="model-label">{{modelLabel}}</view><view class="model-note">{{modelNote}}</view></view><view class="model-chevron">切换⌄</view>
         </view>
       </picker>
 
       <view class="context-card">
-        <view class="context-top"><text>今日上下文</text><text>{{isLoggedIn ? '已读取本机记录' : '访客模式'}}</text></view>
+        <view class="context-top"><view><text>今天的节奏</text><view>从你的记录里，挑一件刚刚好的事</view></view><text>{{isLoggedIn ? '已连接' : '访客'}}</text></view>
         <view class="context-grid">
-          <view><text>{{summary.work}}</text><view>工作待办</view></view>
-          <view><text>{{summary.study}}</text><view>学习计划</view></view>
-          <view><text>{{summary.volunteer}}</text><view>公益意向</view></view>
-          <view><text>{{summary.diary}}</text><view>生活日记</view></view>
+          <view class="context-item work"><view class="context-icon">□</view><view><text>{{summary.work}}</text><view>工作待办</view></view></view>
+          <view class="context-item study"><view class="context-icon">△</view><view><text>{{summary.study}}</text><view>学习计划</view></view></view>
+          <view class="context-item volunteer"><view class="context-icon">♡</view><view><text>{{summary.volunteer}}</text><view>公益意向</view></view></view>
+          <view class="context-item diary"><view class="context-icon">○</view><view><text>{{summary.diary}}</text><view>生活日记</view></view></view>
         </view>
       </view>
 
-      <view class="quick-title">你可以这样问</view>
-      <scroll-view class="quick-scroll" scroll-x enhanced show-scrollbar="{{false}}">
-        <view class="quick-row">
-          <button wx:for="{{quickPrompts}}" wx:key="text" class="quick-chip" bindtap="usePrompt" data-text="{{item.text}}">{{item.label}}</button>
+      <block wx:if="{{messages.length <= 1}}">
+        <view class="quick-title"><text>不知道聊什么？</text><view>选一句，马上开始</view></view>
+        <view class="quick-grid">
+          <button wx:for="{{quickPrompts}}" wx:key="text" class="quick-card {{item.tone}}" bindtap="usePrompt" data-text="{{item.text}}" disabled="{{thinking}}" aria-label="{{item.label}}">
+            <view class="quick-icon">{{item.icon}}</view><view class="quick-label">{{item.label}}</view><view class="quick-note">{{item.note}}</view>
+          </button>
         </view>
-      </scroll-view>
+      </block>
 
       <view class="messages">
+        <view class="thread-label"><text></text><view>我们的对话</view><text></text></view>
         <view wx:for="{{messages}}" wx:key="id" id="message-{{item.id}}" class="message-row {{item.role}}">
           <view wx:if="{{item.role === 'assistant'}}" class="message-avatar">✦</view>
           <view class="message-stack">
+            <view wx:if="{{item.role === 'assistant'}}" class="message-name">小夏</view>
             <view class="message-bubble">{{item.content}}</view>
             <button wx:if="{{item.action}}" class="message-action" bindtap="openAction" data-page="{{item.action.page}}">{{item.action.label}} →</button>
           </view>
@@ -47,10 +50,10 @@
   </scroll-view>
 
   <view class="composer-wrap">
-    <view class="privacy-note">经授权后发送记录摘要 · 不发送日记正文</view>
     <view class="composer">
-      <textarea class="composer-input" value="{{draft}}" bindinput="updateDraft" placeholder="问问今天该做什么…" auto-height maxlength="200" cursor-spacing="24" confirm-type="send" bindconfirm="sendMessage"></textarea>
-      <button class="send-button {{draft ? 'ready' : ''}}" bindtap="sendMessage" disabled="{{!draft || thinking}}" aria-label="发送消息">↑</button>
+      <view class="composer-spark">✦</view><textarea class="composer-input" value="{{draft}}" bindinput="updateDraft" placeholder="和小夏聊聊今天…" auto-height maxlength="200" cursor-spacing="24" confirm-type="send" bindconfirm="sendMessage"></textarea>
+      <button class="send-button {{draft ? 'ready' : ''}}" bindtap="sendMessage" disabled="{{!draft || thinking}}" aria-label="发送消息">➤</button>
     </view>
+    <view class="privacy-note">经授权后发送记录摘要，不发送日记正文</view>
   </view>
 </view>
