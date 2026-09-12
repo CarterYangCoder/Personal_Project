@@ -1,0 +1,39 @@
+.home-content { margin-top: -34rpx; }
+.summer-overview { position: relative; padding: 28rpx 28rpx 30rpx; }
+.overview-heading { display: flex; flex-direction: row; justify-content: space-between; }
+.overview-copy { display: flex; flex-direction: column; }
+.overview-title { font-family: "Songti SC", serif; font-size: 38rpx; font-weight: 700; letter-spacing: 3rpx; }
+.overview-subtitle { margin-top: 10rpx; color: #386877; font-family: "STKaiti", serif; font-size: 24rpx; letter-spacing: 2rpx; }
+.note-paper { display: flex; flex-direction: column; align-items: flex-end; padding: 13rpx 16rpx; color: #265d68; font-family: "STKaiti", serif; font-size: 18rpx; line-height: 1.55; background-color: #f8efe0; transform: rotate(4deg); }
+.progress-copy { display: flex; flex-direction: row; align-items: baseline; margin-top: 28rpx; font-size: 25rpx; font-weight: 600; }
+.progress-number { margin: 0 14rpx; font-size: 55rpx; font-weight: 700; }
+.progress-track { height: 22rpx; margin-top: 13rpx; overflow: hidden; border-radius: 999rpx; background-color: #e5e7e4; }
+.progress-value { width: 50%; height: 100%; border-radius: 999rpx; background-image: linear-gradient(90deg, #08777d 0%, #20a09b 100%); }
+.plan-card { padding: 4rpx 22rpx; }
+.plan-row { display: flex; flex-direction: row; align-items: center; min-height: 112rpx; border-bottom: 1px solid #eee8df; }
+.plan-row:last-child { border-bottom: 0; }
+.plan-check { display: flex; align-items: center; justify-content: center; width: 44rpx; height: 44rpx; margin-right: 18rpx; border: 3rpx solid #5c7785; border-radius: 50%; color: #fff; }
+.plan-check.checked { border-color: #15948e; background-color: #15948e; }
+.plan-check.doing { border-color: #5c7785; }
+.plan-check.pending { border-color: #e05b43; }
+.plan-check text { font-size: 25rpx; }
+.plan-copy { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.plan-title { color: #073f50; font-size: 25rpx; font-weight: 600; }
+.plan-time { margin-top: 7rpx; color: #748995; font-size: 20rpx; }
+.module-grid { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin-top: 20rpx; }
+.module-card { display: flex; flex-direction: row; align-items: center; width: calc(50% - 8rpx); min-height: 145rpx; margin-bottom: 16rpx; padding: 18rpx; overflow: hidden; }
+.module-icon-wrap { display: flex; align-items: center; justify-content: center; width: 82rpx; height: 82rpx; margin-right: 16rpx; border-radius: 24rpx; background-color: #fde8df; }
+.module-card.blue .module-icon-wrap { background-color: #e1f3fa; }
+.module-card.gold .module-icon-wrap { background-color: #fff0d7; }
+.module-card.green .module-icon-wrap { background-color: #e3f1e9; }
+.module-icon-wrap image { width: 55rpx; height: 55rpx; }
+.module-copy { display: flex; flex: 1; flex-direction: column; }
+.module-title { font-family: "Songti SC", serif; font-size: 30rpx; font-weight: 700; }
+.module-count { margin-top: 5rpx; color: #536f7a; font-size: 22rpx; }
+.module-arrow { color: #536f7a; font-size: 44rpx; }
+.summer-tip { position: relative; display: flex; flex-direction: row; align-items: center; min-height: 138rpx; padding: 23rpx 28rpx; overflow: hidden; }
+.tip-copy { display: flex; flex: 1; flex-direction: column; }
+.tip-title { font-family: "Songti SC", serif; font-size: 28rpx; font-weight: 700; }
+.tip-line { margin-top: 6rpx; color: #3f6875; font-size: 21rpx; }
+.tip-icon { width: 62rpx; height: 62rpx; margin-right: 18rpx; }
+.tip-arrow { color: #536f7a; font-size: 42rpx; }

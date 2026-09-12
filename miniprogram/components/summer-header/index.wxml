@@ -1,0 +1,11 @@
+<view class="summer-header {{compact ? 'compact' : ''}}" style="padding-top: {{statusTop}}px;">
+  <image class="header-art" src="/assets/images/summer-hero.jpg" mode="aspectFill" />
+  <view class="header-shade"></view>
+  <view class="header-copy">
+    <view wx:if="{{back}}" class="header-back" bindtap="goBack" aria-role="button" aria-label="返回"><text>‹</text></view>
+    <view class="header-text">
+      <text class="header-title">{{title}}</text>
+      <text class="header-subtitle">{{subtitle}}</text>
+    </view>
+  </view>
+</view>

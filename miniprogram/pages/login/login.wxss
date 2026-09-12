@@ -1,0 +1,29 @@
+.login-scroll { background-color: #f7f1e6; }
+.login-page { min-height: 100vh; padding-bottom: calc(64rpx + env(safe-area-inset-bottom)); background-color: #f7f1e6; }
+.login-hero { position: relative; height: 520rpx; overflow: hidden; }
+.login-hero-art { position: absolute; right: -170rpx; bottom: -12rpx; width: 1080rpx; height: 405rpx; }
+.login-top { position: relative; z-index: 2; padding: calc(44rpx + env(safe-area-inset-top)) 42rpx 0; }
+.back-link { color: #073f50; font-size: 27rpx; }
+.login-heading { position: relative; z-index: 2; display: flex; flex-direction: column; padding: 54rpx 54rpx 0; }
+.login-title { color: #073f50; font-family: "Songti SC", "STSong", serif; font-size: 53rpx; font-weight: 700; line-height: 1.28; letter-spacing: 4rpx; }
+.login-subtitle { margin-top: 10rpx; color: #55707a; font-size: 24rpx; line-height: 1.4; letter-spacing: 2rpx; }
+.login-card { position: relative; z-index: 3; margin: -18rpx 30rpx 0; padding: 46rpx 38rpx 30rpx; text-align: center; }
+.avatar-button { position: relative; width: 170rpx; height: 170rpx; margin: 0 auto; overflow: visible; border-radius: 50%; background-color: #dfe9e3; }
+.avatar-image { width: 170rpx; height: 170rpx; border-radius: 50%; }
+.camera-dot { position: absolute; right: -4rpx; bottom: 4rpx; display: flex; align-items: center; justify-content: center; width: 62rpx; height: 62rpx; border: 6rpx solid #08777d; border-radius: 50%; background-color: #fffdf8; }
+.camera-dot image { width: 35rpx; height: 35rpx; }
+.nickname-row { display: flex; flex-direction: row; align-items: center; height: 88rpx; margin-top: 30rpx; padding: 0 24rpx; border: 1px solid #ccd4d5; border-radius: 999rpx; }
+.nickname-icon { width: 39rpx; height: 39rpx; margin-right: 15rpx; }
+.nickname-input { flex: 1; height: 88rpx; color: #073f50; font-size: 24rpx; text-align: left; }
+.count { color: #96a1a6; font-size: 21rpx; }
+.wechat-button { display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 92rpx; margin-top: 24rpx; border-radius: 999rpx; color: #fff; font-size: 30rpx; font-weight: 700; background-image: linear-gradient(90deg, #08777d 0%, #17928f 100%); }
+.wechat-mark { margin-right: 14rpx; font-size: 24rpx; letter-spacing: -5rpx; }
+.safe-tip { margin-top: 18rpx; color: #819097; font-size: 20rpx; }
+.benefits { display: flex; flex-direction: row; margin: 34rpx 24rpx 0; }
+.benefit { display: flex; flex: 1; flex-direction: column; align-items: center; min-width: 0; padding: 0 20rpx; }
+.benefit + .benefit { border-left: 1px solid #ddd7cd; }
+.benefit image { width: 58rpx; height: 58rpx; }
+.benefit-title { margin-top: 12rpx; color: #073f50; font-size: 23rpx; font-weight: 700; }
+.benefit-note { margin-top: 7rpx; color: #7a898e; font-size: 18rpx; line-height: 1.45; text-align: center; }
+.login-ending { display: flex; flex-direction: column; align-items: center; margin-top: 50rpx; color: #235a67; font-family: "STKaiti", serif; font-size: 25rpx; line-height: 1.8; letter-spacing: 4rpx; }
+.login-ending view { width: 76rpx; height: 2rpx; margin-top: 12rpx; background-color: #1b6872; }

@@ -1,0 +1,28 @@
+<scroll-view class="page-scroll login-scroll" type="list" scroll-y>
+  <view class="login-page">
+    <view class="login-hero">
+      <image class="login-hero-art" src="/assets/images/summer-hero.jpg" mode="aspectFill" />
+      <view class="login-top"><text class="back-link" bindtap="back">‹　返回首页</text></view>
+      <view class="login-heading"><text class="login-title">登录，</text><text class="login-title">保存我的夏天</text><text class="login-subtitle">记录点滴努力，</text><text class="login-subtitle">让每一个夏天都有回响</text></view>
+    </view>
+    <view class="login-card paper-surface">
+      <button class="avatar-button" open-type="chooseAvatar" bindchooseavatar="chooseAvatar">
+        <image class="avatar-image" src="{{avatarUrl || '/assets/images/avatar-xiaoxia.png'}}" mode="aspectFill" />
+        <view class="camera-dot"><image src="/assets/icons/camera-teal.png" mode="aspectFit" /></view>
+      </button>
+      <view class="nickname-row">
+        <image class="nickname-icon" src="/assets/icons/tab-user.png" mode="aspectFit" />
+        <input class="nickname-input" type="nickname" value="{{nickname}}" bindinput="inputNickname" maxlength="12" placeholder="请输入你的昵称" />
+        <text class="count">{{nickname.length || 0}}/12</text>
+      </view>
+      <button class="wechat-button" bindtap="login"><text class="wechat-mark">●●</text><text>微信登录</text></button>
+      <view class="safe-tip"><text>头像昵称仅用于个人记录展示</text></view>
+    </view>
+    <view class="benefits">
+      <view class="benefit"><image src="/assets/icons/tab-record-active.png" mode="aspectFit" /><text class="benefit-title">同步计划</text><text class="benefit-note">多端同步，不怕丢失</text></view>
+      <view class="benefit"><image src="/assets/icons/book-blue.png" mode="aspectFit" /><text class="benefit-title">保存日记</text><text class="benefit-note">珍藏每个成长瞬间</text></view>
+      <view class="benefit"><image src="/assets/icons/leaf-green.png" mode="aspectFit" /><text class="benefit-title">管理公益报名</text><text class="benefit-note">让善意延续到更远的地方</text></view>
+    </view>
+    <view class="login-ending"><text>这个夏天</text><text>我正在成为更好的自己</text><view></view></view>
+  </view>
+</scroll-view>

@@ -1,0 +1,47 @@
+<scroll-view class="page-scroll" type="list" scroll-y scroll-with-animation scroll-into-view="{{scrollTarget}}">
+  <view>
+    <summer-header title="工作记录" subtitle="记录点滴努力，\n让每一份付出都有回响" back="{{true}}" />
+    <view class="record-content page-content">
+      <view class="month-card paper-surface">
+        <view class="month-top"><text class="month-select">7月</text><text class="month-note">本月进度</text></view>
+        <view class="month-body">
+          <view class="month-progress"><view class="month-count"><text>完成</text><text class="count-strong">{{tasks.length ? completedCount : 8}}</text><text>/ {{tasks.length || 12}}</text></view><view class="line-track"><view style="width: 67%;"></view></view><text class="count-note">已完成 {{tasks.length ? completedCount : 8}} 项 · 还有 {{tasks.length ? openTasks : 4}} 项待完成</text></view>
+          <view class="ring-wrap"><view class="ring"><view class="ring-hole"><text>67%</text><text>完成率</text></view></view><view class="focus-hours"><text>28h</text><text>专注时长</text></view></view>
+        </view>
+      </view>
+      <view class="date-band paper-surface"><text class="date-main">7月20日　今天</text><text class="date-count">{{displayTasks.length}} 项任务</text></view>
+      <view class="timeline-list">
+        <view wx:for="{{displayTasks}}" wx:key="id" class="timeline-row">
+          <view class="time-col"><text>{{item.startTime || '—'}}</text><view class="time-dot {{item.statusKey}}"></view><view class="time-line"></view></view>
+          <view class="task-card paper-surface">
+            <view class="task-head"><text class="task-title">{{item.title}}</text><text class="status-pill {{item.statusKey}}">{{item.status}}</text></view>
+            <text class="category-chip">{{item.category}}</text>
+            <text class="task-details" overflow="ellipsis" max-lines="2">{{item.details || item.result}}</text>
+            <view wx:if="{{tasks.length}}" class="task-actions"><text bindtap="editTask" data-id="{{item.id}}">编辑</text><text bindtap="deleteTask" data-id="{{item.id}}">删除</text></view>
+          </view>
+        </view>
+      </view>
+      <view class="handbook-card paper-surface" bindtap="previewHandbook"><image src="/assets/images/summer-hero.jpg" mode="aspectFill" /><view class="handbook-copy"><text class="handbook-title">暑假项目回顾 · 新生手册</text><text class="handbook-note">回顾这段特别的经历，记录成长与收获。</text></view><text class="handbook-arrow">去查看 ›</text></view>
+      <button class="primary-action" bindtap="openComposer"><image class="action-icon" src="/assets/icons/plus-coral.png" mode="aspectFit" /><text>记一笔工作</text></button>
+      <view wx:if="{{!isLoggedIn}}" class="guest-hint"><text>当前为设计预览，登录后可新增并同步真实工作记录。</text></view>
+    </view>
+  </view>
+</scroll-view>
+<bottom-nav selected="record" />
+
+<view wx:if="{{showComposer}}" class="sheet-mask" catchtap="closeComposer">
+  <view class="editor-sheet" catchtap="noop">
+    <view class="sheet-head"><text class="sheet-title">{{editingId ? '修改工作记录' : '记一笔工作'}}</text><text class="sheet-close" bindtap="closeComposer">关闭</text></view>
+    <scroll-view class="sheet-scroll" type="list" scroll-y>
+      <form bindsubmit="saveTask">
+        <text class="field-label">任务标题</text><input class="form-field" value="{{workTitle}}" bindinput="inputWorkTitle" maxlength="50" placeholder="例如：整理实习周报" />
+        <text class="field-label">日期与时间</text><view class="form-row"><picker mode="date" value="{{workDate}}" bindchange="changeWorkDate"><view class="picker-field"><text>{{workDate}}</text></view></picker><picker mode="time" value="{{startTime}}" bindchange="changeStartTime"><view class="picker-field"><text>{{startTime}}</text></view></picker><picker mode="time" value="{{endTime}}" bindchange="changeEndTime"><view class="picker-field"><text>{{endTime}}</text></view></picker></view>
+        <text class="field-label">任务类型</text><input class="form-field" value="{{category}}" bindinput="inputCategory" maxlength="20" placeholder="实践活动 / 实习实践" />
+        <text class="field-label">过程记录</text><textarea class="form-field form-textarea" value="{{details}}" bindinput="inputDetails" maxlength="500" placeholder="做了什么、遇到了什么问题？" />
+        <text class="field-label">成果与下一步</text><textarea class="form-field form-textarea" value="{{result}}" bindinput="inputResult" maxlength="300" placeholder="记录成果或下一步计划" />
+        <text class="field-label">状态</text><picker range="{{statusOptions}}" value="{{statusIndex}}" bindchange="changeStatus"><view class="picker-field"><text>{{statusOptions[statusIndex]}}</text></view></picker>
+        <button class="primary-action form-submit" form-type="submit"><text>{{editingId ? '保存修改' : '保存这条记录'}}</text></button>
+      </form>
+    </scroll-view>
+  </view>
+</view>

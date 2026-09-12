@@ -1,0 +1,6 @@
+<view class="bottom-nav">
+  <view wx:for="{{items}}" wx:key="key" class="nav-item {{selected === item.key ? 'active' : ''}}" data-key="{{item.key}}" bindtap="go" aria-role="button" aria-label="{{item.label}}">
+    <image class="nav-icon" src="{{selected === item.key ? item.activeIcon : item.icon}}" mode="aspectFit" />
+    <text class="nav-label">{{item.label}}</text>
+  </view>
+</view>

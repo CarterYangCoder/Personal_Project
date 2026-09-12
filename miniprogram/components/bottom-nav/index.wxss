@@ -1,0 +1,5 @@
+.bottom-nav { position: fixed; z-index: 50; right: 0; bottom: 0; left: 0; display: flex; flex-direction: row; height: calc(126rpx + env(safe-area-inset-bottom)); padding: 13rpx 24rpx env(safe-area-inset-bottom); border-top: 1px solid #e7e0d5; background-color: rgba(255, 253, 248, .98); box-shadow: 0 -8rpx 24rpx rgba(59, 60, 52, .07); }
+.nav-item { display: flex; flex: 1; flex-direction: column; align-items: center; justify-content: center; color: #5d7788; }
+.nav-icon { width: 47rpx; height: 47rpx; }
+.nav-label { margin-top: 6rpx; font-size: 22rpx; line-height: 1.1; }
+.nav-item.active { color: #08777d; font-weight: 700; }

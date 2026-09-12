@@ -1,0 +1,58 @@
+<scroll-view class="page-scroll" type="list" scroll-y scroll-with-animation scroll-into-view="{{scrollTarget}}">
+  <view>
+    <summer-header title="学习手账" subtitle="让每一次专注，\n都成为更好的自己" back="{{true}}" />
+    <view class="study-content page-content">
+      <view class="timer-panel paper-surface">
+        <view class="tomato-wrap"><view class="timer-arc"></view><view class="tomato"><view class="tomato-leaf"></view></view><text class="timer-main">{{timerText}}</text></view>
+        <view class="timer-copy">
+          <view class="mode-row"><text class="mode active">番茄钟</text><text class="mode">正计时</text></view>
+          <text class="timer-note">专注当下，收获更好的自己</text>
+          <button class="start-button" bindtap="handleTimer"><text>{{timerRunning ? '暂停专注' : '开始专注'}}</text></button>
+          <view class="timer-options"><text>专注 {{focusMinutes}} 分钟</text><text>休息 {{restMinutes}} 分钟</text></view>
+        </view>
+      </view>
+
+      <view class="section-row"><text class="section-title">今日学习计划　{{tasks.length ? completedCount : 3}} / {{displayTasks.length + 1}}</text><text class="section-link">查看全部 ›</text></view>
+      <view class="study-plan paper-surface">
+        <view wx:for="{{displayTasks}}" wx:key="id" class="study-row">
+          <view class="study-check {{item.done ? 'done' : ''}}"><text>{{item.done ? '✓' : ''}}</text></view>
+          <text class="study-task">{{item.title}}</text>
+          <text class="subject-tag">{{item.subject}}</text>
+          <text class="priority-tag">{{item.priority || '中'}}</text>
+          <text class="study-time">{{item.timeLabel}}</text>
+        </view>
+      </view>
+
+      <view class="section-row"><text class="section-title">优先级一览</text><text class="section-link">本周 ›</text></view>
+      <view class="priority-grid">
+        <view class="priority-card coral"><image src="/assets/icons/briefcase-coral.png" mode="aspectFit" /><text>重要且紧急</text><text class="priority-count">2 项</text></view>
+        <view class="priority-card blue"><image src="/assets/icons/book-blue.png" mode="aspectFit" /><text>重要不紧急</text><text class="priority-count">4 项</text></view>
+        <view class="priority-card gold"><text class="clock-icon">时</text><text>不重要紧急</text><text class="priority-count">1 项</text></view>
+        <view class="priority-card green"><image src="/assets/icons/leaf-green.png" mode="aspectFit" /><text>不重要不紧急</text><text class="priority-count">3 项</text></view>
+      </view>
+
+      <view class="section-row"><text class="section-title">最近学习记录</text><text class="section-link">查看全部 ›</text></view>
+      <view class="recent-card paper-surface"><image src="/assets/images/summer-album.jpg" mode="aspectFill" /><view class="recent-copy"><text class="recent-title">英语阅读练习</text><text class="recent-note">完成了 3 篇阅读理解，正确率 80%，下次继续加油！</text><text class="recent-time">今天 18:20</text></view><text class="recent-tag">英语</text></view>
+      <button class="primary-action blue" bindtap="openComposer"><image class="action-icon" src="/assets/icons/plus-coral.png" mode="aspectFit" /><text>记一段学习</text></button>
+      <view wx:if="{{!isLoggedIn}}" class="guest-hint"><text>当前为设计预览，登录后可保存学习计划和番茄钟设置。</text></view>
+    </view>
+  </view>
+</scroll-view>
+<bottom-nav selected="record" />
+
+<view wx:if="{{showComposer}}" class="sheet-mask" catchtap="closeComposer">
+  <view class="editor-sheet" catchtap="noop">
+    <view class="sheet-head"><text class="sheet-title">{{editingId ? '修改学习记录' : '记一段学习'}}</text><text class="sheet-close" bindtap="closeComposer">关闭</text></view>
+    <scroll-view class="sheet-scroll" type="list" scroll-y>
+      <form bindsubmit="saveTask">
+        <text class="field-label">学习标题</text><input class="form-field" value="{{studyTitle}}" bindinput="inputStudyTitle" maxlength="50" placeholder="例如：完成英语阅读练习" />
+        <text class="field-label">日期与时间</text><view class="form-row"><picker mode="date" value="{{studyDate}}" bindchange="changeStudyDate"><view class="picker-field"><text>{{studyDate}}</text></view></picker><picker mode="time" value="{{startTime}}" bindchange="changeStartTime"><view class="picker-field"><text>{{startTime}}</text></view></picker><picker mode="time" value="{{endTime}}" bindchange="changeEndTime"><view class="picker-field"><text>{{endTime}}</text></view></picker></view>
+        <text class="field-label">学科 / 分类</text><input class="form-field" value="{{subject}}" bindinput="inputSubject" maxlength="20" placeholder="英语、数学、阅读……" />
+        <text class="field-label">学习内容与目标</text><textarea class="form-field form-textarea" value="{{details}}" bindinput="inputDetails" maxlength="500" placeholder="准备学什么，想达到什么程度？" />
+        <text class="field-label">收获与复盘</text><textarea class="form-field form-textarea" value="{{result}}" bindinput="inputResult" maxlength="300" placeholder="学到了什么，哪里还需要继续？" />
+        <view class="form-row"><picker range="{{quadrantNames}}" value="{{quadrantIndex}}" bindchange="changeQuadrant"><view class="picker-field"><text>{{quadrantNames[quadrantIndex]}}</text></view></picker><picker range="{{statusOptions}}" value="{{statusIndex}}" bindchange="changeStatus"><view class="picker-field"><text>{{statusOptions[statusIndex]}}</text></view></picker></view>
+        <button class="primary-action blue form-submit" form-type="submit"><text>{{editingId ? '保存修改' : '保存这条记录'}}</text></button>
+      </form>
+    </scroll-view>
+  </view>
+</view>

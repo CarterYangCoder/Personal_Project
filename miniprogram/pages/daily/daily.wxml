@@ -1,0 +1,52 @@
+<scroll-view class="page-scroll" type="list" scroll-y scroll-with-animation scroll-into-view="{{scrollTarget}}">
+  <view>
+    <summer-header title="生活日记" subtitle="记录生活中的小美好，\n让平凡的日子也闪闪发光" back="{{true}}" />
+    <view class="daily-content page-content">
+      <view class="mood-card paper-surface">
+        <view class="mood-date"><text>7月20日　星期六</text><text>今天也要加油呀！</text></view>
+        <text class="mood-title">今天过得怎么样？</text>
+        <view class="mood-row">
+          <view wx:for="{{moods}}" wx:key="*this" class="mood-item {{moodIndex === index ? 'selected' : ''}}" data-index="{{index}}" bindtap="selectMood">
+            <view class="mood-face tone-{{index}}"><text>{{index === 0 ? '⌣' : index === 1 ? '◡' : index === 2 ? '—' : index === 3 ? '⌢' : '︵'}}</text></view>
+            <text>{{index === 0 ? '很好' : index === 1 ? '开心' : index === 2 ? '平静' : index === 3 ? '有点累' : '不太好'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="section-row"><text class="section-title">最近日记</text><text class="section-link">查看全部 ›</text></view>
+      <view class="diary-list paper-surface">
+        <view wx:for="{{displayDiaries}}" wx:key="id" class="diary-row">
+          <view class="diary-time"><text>{{item.time || item.timeLabel}}</text><view class="diary-dot"></view><view class="diary-line"></view></view>
+          <view class="diary-copy"><view class="diary-head"><text class="diary-title">{{item.title}}</text><text class="diary-tag">{{item.category}}</text></view><text class="diary-note" overflow="ellipsis" max-lines="2">{{item.content}}</text><view wx:if="{{diaries.length}}" class="diary-actions"><text bindtap="editDiary" data-id="{{item.id}}">编辑</text><text bindtap="deleteDiary" data-id="{{item.id}}">删除</text></view></view>
+          <view class="diary-photo"><image class="triptych {{item.imagePosition || 'left'}}" src="/assets/images/daily-triptych.jpg" mode="scaleToFill" /></view>
+        </view>
+      </view>
+
+      <view class="song-card paper-surface">
+        <image class="album-cover" src="/assets/images/summer-album.jpg" mode="aspectFill" />
+        <view class="song-copy"><text class="song-kicker">每日一歌</text><text class="song-title">{{currentSong.title}}</text><text class="song-artist">{{currentSong.artist}}</text><view class="song-progress"><view></view></view><view class="song-time"><text>00:42</text><text>04:15</text></view></view>
+        <view class="song-actions"><text bindtap="nextSong">换一首 ›</text><button class="favorite" bindtap="handleFavorite"><text>{{isCurrentFavorite ? '♥' : '♡'}}</text></button><button class="play" bindtap="playSong"><text>▶</text></button></view>
+      </view>
+      <button class="primary-action" bindtap="openComposer"><image class="action-icon" src="/assets/icons/plus-coral.png" mode="aspectFit" /><text>记下这一刻</text></button>
+      <view wx:if="{{!isLoggedIn}}" class="guest-hint"><text>当前为设计预览，登录后可保存生活日记与歌曲收藏。</text></view>
+    </view>
+  </view>
+</scroll-view>
+<bottom-nav selected="record" />
+
+<view wx:if="{{showComposer}}" class="sheet-mask" catchtap="closeComposer">
+  <view class="editor-sheet" catchtap="noop">
+    <view class="sheet-head"><text class="sheet-title">{{editingId ? '修改生活记录' : '记下这一刻'}}</text><text class="sheet-close" bindtap="closeComposer">关闭</text></view>
+    <scroll-view class="sheet-scroll" type="list" scroll-y>
+      <form bindsubmit="saveDiary">
+        <text class="field-label">日期与时间</text><view class="form-row"><picker mode="date" value="{{diaryDate}}" bindchange="changeDiaryDate"><view class="picker-field"><text>{{diaryDate}}</text></view></picker><picker mode="time" value="{{diaryTime}}" bindchange="changeDiaryTime"><view class="picker-field"><text>{{diaryTime}}</text></view></picker></view>
+        <text class="field-label">心情</text><picker range="{{moods}}" value="{{moodIndex}}" bindchange="changeMood"><view class="picker-field"><text>{{moods[moodIndex]}}</text></view></picker>
+        <text class="field-label">分类</text><input class="form-field" value="{{diaryCategory}}" bindinput="inputDiaryCategory" maxlength="20" placeholder="朋友、运动、家人、出行……" />
+        <text class="field-label">标题</text><input class="form-field" value="{{diaryTitle}}" bindinput="inputDiaryTitle" maxlength="40" placeholder="给这个片段起个标题" />
+        <text class="field-label">发生的事与感受</text><textarea class="form-field form-textarea" value="{{diaryContent}}" bindinput="inputDiaryContent" maxlength="500" placeholder="记录发生了什么、和谁一起、当时有什么感受……" />
+        <view class="important-row"><view><text>标记为重要</text><text>重要片段会在时间轴上留下星标</text></view><switch color="#ef674f" checked="{{diaryImportant}}" bindchange="changeImportant" /></view>
+        <button class="primary-action form-submit" form-type="submit"><text>{{editingId ? '保存修改' : '保存这条记录'}}</text></button>
+      </form>
+    </scroll-view>
+  </view>
+</view>

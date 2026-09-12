@@ -1,0 +1,39 @@
+<scroll-view class="page-scroll" type="list" scroll-y refresher-enabled="{{true}}" refresher-triggered="{{refreshing}}" bindrefresherrefresh="refresh">
+  <view>
+    <summer-header title="{{greeting}}" subtitle="{{heroSubtitle}}" />
+    <view class="home-content page-content">
+      <view class="summer-overview paper-surface">
+        <view class="overview-heading">
+          <view class="overview-copy"><text class="overview-title">我的暑假生活</text><text class="overview-subtitle">夏天很长，我们慢慢变好</text></view>
+          <view class="note-paper"><text>小小行动</text><text>也是大大的成长</text><text>— 小夏</text></view>
+        </view>
+        <view class="progress-copy"><text>暑假已进行</text><text class="progress-number">28</text><text>/ 56 天</text></view>
+        <view class="progress-track"><view class="progress-value"></view></view>
+      </view>
+
+      <view class="section-row"><text class="section-title">今日计划</text><text class="section-link">查看全部 ›</text></view>
+      <view class="plan-card paper-surface">
+        <view wx:for="{{homePlans}}" wx:key="id" class="plan-row">
+          <view class="plan-check {{item.done ? 'checked' : item.statusKey}}"><text>{{item.done ? '✓' : ''}}</text></view>
+          <view class="plan-copy"><text class="plan-title">{{item.title}}</text><text class="plan-time">{{item.time}}</text></view>
+          <text class="status-pill {{item.statusKey}}">{{item.status}}</text>
+        </view>
+      </view>
+
+      <view class="module-grid">
+        <view wx:for="{{homeModules}}" wx:key="id" class="module-card paper-surface tap-card {{item.tone}}" bindtap="goModule" data-page="{{item.page}}">
+          <view class="module-icon-wrap"><image src="{{item.icon}}" mode="aspectFit" /></view>
+          <view class="module-copy"><text class="module-title">{{item.title}}</text><text class="module-count">{{item.count}}</text></view>
+          <text class="module-arrow">›</text>
+        </view>
+      </view>
+
+      <view class="summer-tip paper-surface tap-card" bindtap="openAssistant">
+        <view class="tip-copy"><text class="tip-title">小夏建议</text><text class="tip-line">连续 3 天完成计划了！</text><text class="tip-line">保持节奏，去遇见更大的风景吧。</text></view>
+        <image class="tip-icon" src="/assets/icons/spark-teal.png" mode="aspectFit" />
+        <text class="tip-arrow">›</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<bottom-nav selected="home" />

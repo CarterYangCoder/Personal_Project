@@ -1,0 +1,43 @@
+<scroll-view class="page-scroll" type="list" scroll-y>
+  <view>
+    <summer-header title="公益行动" subtitle="让小行动，\n汇成更大的改变" />
+    <view class="volunteer-content page-content">
+      <scroll-view class="category-scroll" type="list" scroll-x enable-flex>
+        <view class="category-list">
+          <text wx:for="{{categories}}" wx:key="*this" class="category-tab {{activeCategory === item ? 'active' : ''}}" data-category="{{item}}" bindtap="changeCategory">{{item}}</text>
+        </view>
+      </scroll-view>
+      <view class="project-list">
+        <view wx:for="{{displayProjects}}" wx:key="id" class="vol-card paper-surface">
+          <image class="project-image" src="{{item.image}}" mode="aspectFill" />
+          <view class="project-copy">
+            <view class="project-top"><text class="project-type {{item.color}}">{{item.type}}</text><text class="project-chevron" data-id="{{item.id}}" bindtap="toggleProject">›</text></view>
+            <text class="project-title">{{item.name}}</text>
+            <text class="project-meta">地点 · {{item.place}}</text>
+            <text class="project-meta">日期 · {{item.date}}</text>
+            <text class="project-desc" overflow="ellipsis" max-lines="2">{{item.desc}}</text>
+            <view class="join-progress"><view class="join-track"><view style="width: {{item.progress}}%;"></view></view><text>{{item.joined}} / {{item.total}} 人</text></view>
+            <view wx:if="{{activeId === item.id}}" class="need-list"><text wx:for="{{item.needs}}" wx:key="*this">{{item}}</text></view>
+            <button class="join-button {{item.status === '已报名' ? 'joined' : ''}}" data-id="{{item.id}}" bindtap="openIntent"><text>{{item.status}}</text></button>
+          </view>
+        </view>
+      </view>
+      <view class="intent-banner paper-surface tap-card" bindtap="openIntent">
+        <image src="/assets/icons/heart-gold.png" mode="aspectFit" /><view><text class="intent-title">我的参与意向</text><text class="intent-note">记录你感兴趣的公益方向，获取最新活动信息</text></view><text>›</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<bottom-nav selected="volunteer" />
+
+<view wx:if="{{showIntent}}" class="sheet-mask" catchtap="closeIntent">
+  <view class="editor-sheet intent-sheet" catchtap="noop">
+    <view class="sheet-head"><text class="sheet-title">留下参与意向</text><text class="sheet-close" bindtap="closeIntent">关闭</text></view>
+    <form bindsubmit="submitIntent">
+      <text class="field-label">怎么称呼你</text><input class="form-field" name="name" placeholder="请输入昵称或姓名" maxlength="20" />
+      <text class="field-label">想参与的项目</text><picker range="{{projectNames}}" value="{{projectIndex}}" bindchange="changeProject"><view class="picker-field"><text>{{projectNames[projectIndex]}}</text></view></picker>
+      <text class="field-label">你能提供什么帮助</text><textarea class="form-field form-textarea" name="message" placeholder="例如：可以协助整理物资、活动摄影……" maxlength="200" />
+      <button class="primary-action teal form-submit" form-type="submit"><text>提交参与意向</text></button>
+    </form>
+  </view>
+</view>

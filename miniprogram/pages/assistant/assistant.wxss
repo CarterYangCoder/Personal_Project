@@ -1,0 +1,44 @@
+.assistant-page { position: relative; width: 100%; height: 100vh; background-color: #f7f1e6; }
+.assistant-scroll { width: 100%; height: 100vh; }
+.assistant-content { margin-top: -45rpx; padding: 0 24rpx calc(180rpx + env(safe-area-inset-bottom)); }
+.hello-row { display: flex; flex-direction: row; align-items: center; padding: 20rpx 8rpx; }
+.assistant-avatar, .message-avatar { display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: #f2fbf8; box-shadow: 0 8rpx 18rpx rgba(28, 99, 100, .12); }
+.assistant-avatar { width: 88rpx; height: 88rpx; margin-right: 18rpx; }
+.assistant-avatar image { width: 54rpx; height: 54rpx; }
+.hello-copy { display: flex; flex-direction: column; }
+.hello-title { font-family: "Songti SC", serif; font-size: 37rpx; font-weight: 700; }
+.hello-note { margin-top: 6rpx; color: #5d7b87; font-size: 21rpx; }
+.summary-card { display: flex; flex-direction: row; margin-top: 2rpx; padding: 14rpx 8rpx; }
+.summary-item { display: flex; flex: 1; flex-direction: row; align-items: center; justify-content: center; min-width: 0; height: 65rpx; color: #174f60; font-size: 18rpx; }
+.summary-item + .summary-item { border-left: 1px solid #e2ddd4; }
+.summary-item image { width: 38rpx; height: 38rpx; margin-right: 7rpx; }
+.summary-num { margin-right: 4rpx; font-size: 29rpx; font-weight: 700; }
+.quick-grid { display: flex; flex-direction: row; justify-content: space-between; margin-top: 14rpx; }
+.quick-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; width: calc(25% - 8rpx); min-height: 165rpx; padding: 15rpx 12rpx; border: 1px solid #efdcd4; border-radius: 22rpx; text-align: left; background-color: #fff0e8; }
+.quick-card.mint { border-color: #d8e9e1; background-color: #eaf5ef; }
+.quick-card.rose { border-color: #efdcd4; background-color: #fff0e8; }
+.quick-card.blue { border-color: #d6e7ef; background-color: #e7f3f8; }
+.quick-card.sun { border-color: #f1e2c6; background-color: #fff2dc; }
+.quick-icon { font-size: 28rpx; }
+.quick-label { margin-top: 9rpx; color: #073f50; font-size: 20rpx; font-weight: 700; }
+.quick-note { margin-top: 5rpx; color: #5d7883; font-size: 16rpx; line-height: 1.4; }
+.quick-arrow { position: absolute; right: 10rpx; bottom: 9rpx; color: #285c6a; font-size: 28rpx; }
+.messages { margin-top: 24rpx; }
+.message-row { display: flex; flex-direction: row; align-items: flex-end; margin-bottom: 18rpx; }
+.message-row.user { justify-content: flex-end; }
+.message-avatar { flex: 0 0 auto; width: 54rpx; height: 54rpx; margin-right: 12rpx; }
+.message-avatar image { width: 34rpx; height: 34rpx; }
+.user-avatar { flex: 0 0 auto; width: 54rpx; height: 54rpx; margin-left: 12rpx; border-radius: 50%; }
+.message-stack { display: flex; flex-direction: column; max-width: 78%; }
+.message-bubble { padding: 17rpx 21rpx; border: 1px solid #e5ded3; border-radius: 24rpx 24rpx 24rpx 8rpx; color: #164b5c; font-size: 22rpx; line-height: 1.65; background-color: #fffdf8; box-shadow: 0 8rpx 18rpx rgba(55, 61, 53, .06); }
+.user .message-bubble { border: 0; border-radius: 24rpx 24rpx 8rpx 24rpx; background-color: #dff0eb; }
+.message-action { align-self: flex-start; height: 52rpx; margin-top: 9rpx; padding: 0 18rpx; border: 1px solid #64b6d5; border-radius: 999rpx; color: #176684; font-size: 19rpx; background-color: #e5f5fb; }
+.thinking { padding: 17rpx 21rpx; border-radius: 24rpx; color: #67808b; font-size: 20rpx; background-color: #fffdf8; }
+.chat-end { height: 20rpx; }
+.composer-wrap { position: fixed; z-index: 30; right: 0; bottom: 0; left: 0; padding: 12rpx 22rpx calc(13rpx + env(safe-area-inset-bottom)); background-color: rgba(247, 241, 230, .98); }
+.composer { display: flex; flex-direction: row; align-items: center; min-height: 78rpx; padding: 8rpx 9rpx 8rpx 18rpx; border-radius: 28rpx; }
+.composer-icon { margin-right: 12rpx; color: #1c6171; font-size: 29rpx; }
+.composer-input { flex: 1; min-height: 52rpx; max-height: 130rpx; padding: 7rpx 0; color: #164b5c; font-size: 22rpx; }
+.send-button { display: flex; align-items: center; justify-content: center; width: 60rpx; height: 60rpx; border-radius: 50%; color: #fff; font-size: 25rpx; background-color: #08777d; }
+.send-button { opacity: 1; }
+.privacy-note { display: block; margin-top: 8rpx; color: #83939a; font-size: 16rpx; text-align: center; }

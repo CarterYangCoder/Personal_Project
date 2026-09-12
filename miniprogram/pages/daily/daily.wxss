@@ -1,0 +1,50 @@
+.daily-content { margin-top: -38rpx; }
+.mood-card { padding: 24rpx 24rpx 26rpx; }
+.mood-date { display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+.mood-date text:first-child { padding: 11rpx 18rpx; border: 1px solid #e2ddd4; border-radius: 999rpx; font-size: 26rpx; font-weight: 700; }
+.mood-date text:last-child { color: #67808b; font-size: 20rpx; }
+.mood-title { display: block; margin: 24rpx 4rpx 16rpx; font-family: "Songti SC", serif; font-size: 31rpx; font-weight: 700; }
+.mood-row { display: flex; flex-direction: row; justify-content: space-between; }
+.mood-item { display: flex; flex-direction: column; align-items: center; color: #164b5d; font-size: 20rpx; }
+.mood-face { display: flex; align-items: center; justify-content: center; width: 72rpx; height: 72rpx; margin-bottom: 9rpx; border: 5rpx solid transparent; border-radius: 50%; color: #08777d; font-size: 31rpx; background-color: #dfeee8; }
+.tone-1 { color: #e86049; background-color: #fee3db; }
+.tone-2 { color: #3085a8; background-color: #e0f0f6; }
+.tone-3 { color: #d58323; background-color: #fff0d4; }
+.tone-4 { color: #536b76; background-color: #e8eaeb; }
+.mood-item.selected .mood-face { border-color: #fff; box-shadow: 0 0 0 4rpx #08777d; }
+.diary-list { padding: 4rpx 15rpx; }
+.diary-row { display: flex; flex-direction: row; align-items: center; min-height: 142rpx; border-bottom: 1px solid #ece8df; }
+.diary-row:last-child { border-bottom: 0; }
+.diary-time { position: relative; width: 110rpx; height: 142rpx; padding-top: 27rpx; }
+.diary-time > text { font-size: 22rpx; }
+.diary-dot { position: absolute; z-index: 2; top: 33rpx; right: 10rpx; width: 20rpx; height: 20rpx; border: 4rpx solid #e6f0ed; border-radius: 50%; background-color: #15938d; }
+.diary-line { position: absolute; top: 48rpx; right: 19rpx; bottom: -20rpx; width: 1px; background-color: #ccd4d2; }
+.diary-copy { display: flex; flex: 1; flex-direction: column; min-width: 0; padding: 18rpx 12rpx; }
+.diary-head { display: flex; flex-direction: row; align-items: center; }
+.diary-title { font-family: "Songti SC", serif; font-size: 26rpx; font-weight: 700; }
+.diary-tag { margin-left: 12rpx; padding: 6rpx 13rpx; border-radius: 999rpx; color: #18856f; font-size: 17rpx; background-color: #e4f2eb; }
+.diary-note { display: block; margin-top: 9rpx; color: #607c88; font-size: 19rpx; line-height: 1.45; }
+.diary-actions { display: flex; flex-direction: row; margin-top: 8rpx; color: #67808b; font-size: 17rpx; }
+.diary-actions text { margin-right: 20rpx; }
+.diary-photo { position: relative; width: 136rpx; height: 105rpx; overflow: hidden; border-radius: 16rpx; }
+.triptych { position: absolute; top: 0; width: 408rpx; height: 105rpx; }
+.triptych.left { left: 0; }
+.triptych.center { left: -136rpx; }
+.triptych.right { left: -272rpx; }
+.song-card { display: flex; flex-direction: row; align-items: center; margin: 20rpx 0 18rpx; padding: 18rpx; }
+.album-cover { width: 145rpx; height: 145rpx; border-radius: 18rpx; }
+.song-copy { display: flex; flex: 1; flex-direction: column; min-width: 0; margin-left: 20rpx; }
+.song-kicker { font-size: 18rpx; }
+.song-title { margin-top: 5rpx; font-family: "Songti SC", serif; font-size: 29rpx; font-weight: 700; }
+.song-artist { margin-top: 4rpx; color: #627e89; font-size: 19rpx; }
+.song-progress { height: 5rpx; margin-top: 13rpx; background-color: #d9ddda; }
+.song-progress view { width: 32%; height: 100%; background-color: #08777d; }
+.song-time { display: flex; flex-direction: row; justify-content: space-between; margin-top: 5rpx; color: #718692; font-size: 15rpx; }
+.song-actions { display: flex; flex-direction: column; align-items: center; margin-left: 16rpx; }
+.song-actions > text { color: #557481; font-size: 18rpx; }
+.favorite, .play { display: flex; align-items: center; justify-content: center; width: 61rpx; height: 61rpx; margin-top: 9rpx; border-radius: 50%; color: #073f50; font-size: 35rpx; }
+.play { color: #fff; font-size: 24rpx; background-color: #08777d; }
+.important-row { display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-top: 23rpx; }
+.important-row > view { display: flex; flex-direction: column; }
+.important-row view text:first-child { font-size: 23rpx; font-weight: 600; }
+.important-row view text:last-child { margin-top: 6rpx; color: #7b8d95; font-size: 18rpx; }

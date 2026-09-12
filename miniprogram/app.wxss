@@ -1,0 +1,49 @@
+page {
+  --paper: #f7f1e6;
+  --paper-deep: #eee5d7;
+  --card: #fffdf8;
+  --ink: #073f50;
+  --ink-soft: #4e7180;
+  --muted: #7f9198;
+  --teal: #08777d;
+  --teal-light: #47aeb1;
+  --coral: #ef674f;
+  --orange: #f0a23a;
+  --blue: #299cca;
+  min-height: 100%;
+  color: var(--ink);
+  background-color: var(--paper);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+view, text, image, button, input, textarea, scroll-view, navigator, picker, switch { box-sizing: border-box; }
+button { margin: 0; padding: 0; border-radius: 0; font-family: inherit; line-height: normal; background-color: transparent; }
+button::after { border: 0; }
+.page-scroll { width: 100%; height: 100vh; background-color: var(--paper); }
+.page-content { padding: 24rpx 28rpx calc(152rpx + env(safe-area-inset-bottom)); }
+.paper-surface { border: 1px solid rgba(36, 68, 76, .08); border-radius: 28rpx; background-color: rgba(255, 253, 248, .98); box-shadow: 0 12rpx 28rpx rgba(55, 61, 53, .08); }
+.section-row { display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin: 28rpx 8rpx 16rpx; }
+.section-title { color: var(--ink); font-family: "Songti SC", "STSong", serif; font-size: 34rpx; font-weight: 700; letter-spacing: 2rpx; }
+.section-link { color: var(--ink-soft); font-size: 22rpx; }
+.tap-card { transition: opacity .18s ease, transform .18s ease; }
+.primary-action { display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 92rpx; border-radius: 999rpx; color: #fff; font-family: "Songti SC", "STSong", serif; font-size: 31rpx; font-weight: 700; background-image: linear-gradient(90deg, #ef674f 0%, #e95b45 100%); box-shadow: 0 12rpx 24rpx rgba(220, 84, 62, .18); }
+.primary-action.teal { background-image: linear-gradient(90deg, #08777d 0%, #179290 100%); }
+.primary-action.blue { background-image: linear-gradient(90deg, #319ac6 0%, #2786b2 100%); }
+.action-icon { width: 52rpx; height: 52rpx; margin-right: 16rpx; }
+.status-pill { display: inline-flex; align-items: center; justify-content: center; min-width: 108rpx; padding: 12rpx 20rpx; border-radius: 999rpx; color: var(--teal); font-size: 21rpx; background-color: #e6f3ee; }
+.status-pill.doing { color: #d57418; background-color: #fff0d9; }
+.status-pill.pending { color: #526b78; background-color: #eef1f2; }
+.sheet-mask { position: fixed; z-index: 80; top: 0; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; justify-content: flex-end; background-color: rgba(4, 35, 43, .38); }
+.editor-sheet { max-height: 86vh; padding: 28rpx 28rpx calc(30rpx + env(safe-area-inset-bottom)); border-radius: 38rpx 38rpx 0 0; background-color: var(--card); }
+.sheet-scroll { height: 76vh; }
+.sheet-head { display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 20rpx; }
+.sheet-title { font-size: 32rpx; font-weight: 700; }
+.sheet-close { padding: 10rpx 18rpx; color: var(--muted); font-size: 26rpx; }
+.field-label { margin: 22rpx 4rpx 10rpx; color: var(--ink); font-size: 22rpx; font-weight: 600; }
+.form-field { width: 100%; min-height: 80rpx; padding: 0 22rpx; border: 1px solid #ddd8ce; border-radius: 20rpx; color: var(--ink); font-size: 24rpx; background-color: #fbfaf6; }
+.form-textarea { min-height: 150rpx; padding-top: 18rpx; line-height: 1.6; }
+.form-row { display: flex; flex-direction: row; gap: 14rpx; }
+.form-row > picker, .form-row > view { flex: 1; min-width: 0; }
+.picker-field { display: flex; align-items: center; min-height: 80rpx; padding: 0 20rpx; border: 1px solid #ddd8ce; border-radius: 20rpx; color: var(--ink); font-size: 22rpx; background-color: #fbfaf6; }
+.form-submit { margin-top: 26rpx; }
+.guest-hint { padding: 28rpx; color: var(--ink-soft); font-size: 22rpx; line-height: 1.7; text-align: center; }

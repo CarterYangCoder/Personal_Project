@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/home/home",
+    "pages/work/work",
+    "pages/volunteer/volunteer",
+    "pages/study/study",
+    "pages/daily/daily",
+    "pages/profile/profile",
+    "pages/assistant/assistant"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#F7F1E6",
+    "backgroundTextStyle": "light"
+  },
+  "renderer": "skyline",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,15 @@
+{
+  "projectPath": "<project-root>",
+  "outputRoot": "<project-root>/.tmp/gui-check",
+  "routes": [
+    { "key": "launch", "route": "/pages/index/index", "expectedPath": "pages/home/home", "primarySelector": ".page-scroll", "settleMs": 1800 },
+    { "key": "login", "route": "/pages/login/login", "expectedPath": "pages/login/login", "primarySelector": ".page-scroll", "settleMs": 800 },
+    { "key": "home", "route": "/pages/home/home", "expectedPath": "pages/home/home", "primarySelector": ".page-scroll", "settleMs": 800 },
+    { "key": "profile", "route": "/pages/profile/profile", "expectedPath": "pages/profile/profile", "primarySelector": ".page-scroll", "settleMs": 800 },
+    { "key": "assistant", "route": "/pages/assistant/assistant", "expectedPath": "pages/assistant/assistant", "primarySelector": ".assistant-page", "settleMs": 800 },
+    { "key": "work", "route": "/pages/work/work", "expectedPath": "pages/work/work", "primarySelector": ".page-scroll", "settleMs": 800 },
+    { "key": "volunteer", "route": "/pages/volunteer/volunteer", "expectedPath": "pages/volunteer/volunteer", "primarySelector": ".page-scroll", "settleMs": 800 },
+    { "key": "study", "route": "/pages/study/study", "expectedPath": "pages/study/study", "primarySelector": ".page-scroll", "settleMs": 800 },
+    { "key": "daily", "route": "/pages/daily/daily", "expectedPath": "pages/daily/daily", "primarySelector": ".page-scroll", "settleMs": 800 }
+  ]
+}

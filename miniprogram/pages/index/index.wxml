@@ -1,0 +1,11 @@
+<view class="launch {{leaving ? 'leaving' : ''}}" bindtap="enter">
+  <image class="launch-art" src="/assets/images/summer-hero.jpg" mode="aspectFill" />
+  <view class="launch-wash"></view>
+  <view class="launch-copy">
+    <view class="seal"><text>夏</text><text>日</text><view></view></view>
+    <text class="launch-title">我的暑假生活</text>
+    <text class="launch-subtitle">一个暑假，一些行动，一点成长</text>
+    <view class="summer-mark"><view></view><text>SUMMER 2026</text><view></view></view>
+  </view>
+  <view class="launch-bottom"><text class="launch-chevron">⌃</text><text class="launch-enter">轻触进入</text></view>
+</view>

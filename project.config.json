@@ -22,29 +22,34 @@
     "condition": false
   },
   "compileType": "miniprogram",
+  "miniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
   "simulatorPluginLibVersion": {},
   "packOptions": {
     "ignore": [
       {
-        "type": "file",
-        "value": "个人项目汇报.pptx"
+        "value": "every-page-ui",
+        "type": "folder"
       },
       {
-        "type": "file",
-        "value": "个人项目汇报-更新版.pptx"
+        "value": "个人项目汇报.pptx",
+        "type": "file"
       },
       {
-        "type": "file",
-        "value": "cloud-database.md"
+        "value": "个人项目汇报-更新版.pptx",
+        "type": "file"
       },
       {
-        "type": "file",
-        "value": "ppt-cover-hero.png"
+        "value": "cloud-database.md",
+        "type": "file"
       },
       {
-        "type": "file",
-        "value": "README.md"
+        "value": "ppt-cover-hero.png",
+        "type": "file"
+      },
+      {
+        "value": "README.md",
+        "type": "file"
       }
     ],
     "include": []

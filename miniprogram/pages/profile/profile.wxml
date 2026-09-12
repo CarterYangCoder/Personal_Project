@@ -1,0 +1,29 @@
+<scroll-view class="page-scroll" type="list" scroll-y>
+  <view class="profile-page">
+    <summer-header title="个人资料" subtitle="" back="{{true}}" compact="{{true}}" />
+    <view class="profile-content">
+      <button class="profile-avatar" open-type="chooseAvatar" bindchooseavatar="chooseAvatar">
+        <image src="{{avatarUrl || '/assets/images/avatar-xiaoxia.png'}}" mode="aspectFill" />
+        <view class="profile-camera"><image src="/assets/icons/camera-teal.png" mode="aspectFit" /></view>
+      </button>
+      <text class="change-avatar">更换头像</text>
+      <text class="profile-label">昵称</text>
+      <view class="profile-input-row paper-surface">
+        <input class="profile-input" type="nickname" value="{{nickname}}" bindinput="inputNickname" maxlength="10" placeholder="请输入昵称" />
+        <text>{{nickname.length || 0}}/10</text>
+      </view>
+      <view class="identity-card paper-surface">
+        <image class="identity-art" src="/assets/images/summer-hero.jpg" mode="aspectFill" />
+        <view class="identity-shade"></view>
+        <text class="identity-title">我的夏日身份</text>
+        <view class="identity-body">
+          <image class="identity-avatar" src="{{avatarUrl || '/assets/images/avatar-xiaoxia.png'}}" mode="aspectFill" />
+          <view class="identity-copy"><text class="identity-name">{{nickname || '小夏'}}</text><text class="identity-note">记录每一次成长</text></view>
+        </view>
+      </view>
+      <text class="privacy">仅用于个人记录展示</text>
+      <button class="primary-action teal" bindtap="save"><text>保存资料</text></button>
+      <image class="profile-bottom-art" src="/assets/images/summer-hero.jpg" mode="aspectFill" />
+    </view>
+  </view>
+</scroll-view>
